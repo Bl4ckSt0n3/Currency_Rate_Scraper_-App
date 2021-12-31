@@ -33,29 +33,45 @@ def main():
     window = tk.Tk()
     # window.overrideredirect(True)
     
-    dollar_text = tk.Label(window, text=f"Dollar $   :  ", font=("Verdana", 20), bg="grey", fg="white")
-    dollar_text.grid(row=0, column=0, sticky="W", pady=3)
+    dollar_text = tk.Label(window, text=f"Dollar $   :  ", font=("Verdana", 10), bg="#4d0c34", fg="white")
+    dollar_text.grid(row=1, column=0, sticky="W", pady=3)
     
-    dollar_panel = tk.Label(window, text=f" ", font=("Verdana", 20), bg="grey", fg="white")
-    dollar_panel.grid(row=0, column=1, sticky="W", pady=3)
+    dollar_panel = tk.Label(window, text=f" ", font=("Verdana", 10), bg="#4d0c34", fg="white")
+    dollar_panel.grid(row=1, column=1, sticky="W", pady=3)
 
     
-    euro_text = tk.Label(window, text=f"Euro €    :  ", font=("Verdana", 20), bg="grey", fg="white")
-    euro_text.grid(row=1, column=0, sticky="W", pady=3)
+    euro_text = tk.Label(window, text=f"Euro €    :  ", font=("Verdana", 10), bg="#4d0c34", fg="white")
+    euro_text.grid(row=2, column=0, sticky="W", pady=3)
     
-    euro_panel = tk.Label(window, text=f" ", font=("Verdana", 20), bg="grey", fg="white")
-    euro_panel.grid(row=1, column=1, sticky="W", pady=3)
+    euro_panel = tk.Label(window, text=f" ", font=("Verdana", 10), bg="#4d0c34", fg="white")
+    euro_panel.grid(row=2, column=1, sticky="W", pady=3)
     
-    date_panel = tk.Label(window, text=f" ", font=("Verdana", 20), bg="grey", fg="white")
-    date_panel.grid(row=2, column=0, pady=3)
-
-    window.resizable(False, False)
-    window["background"]="grey"
+    date_panel = tk.Label(window, text=f" ", font=("Verdana", 10), bg="#4d0c34", fg="white")
+    date_panel.grid(row=3, column=0, pady=3)
+    window.resizable(True, True)
+    window["background"]="#4d0c34"
     window.attributes("-alpha", 0.8)
-    window.wm_attributes('-transparentcolor', 'grey')
-    # window.wm_attributes('-fullscreen', 'True')
+    #window.wm_attributes('-transparentcolor', 'grey')
     window.title("Currency App")
     window.iconphoto(False, tk.PhotoImage(file='icon.png'))
+    window.geometry('-2+2')
+    window.overrideredirect(True)
+    
+    def quitter(e):
+        window.quit()
+        window.destroy()
+        
+    
+    title_bar = tk.Frame(window,  bg="#4d0c34", relief="raised", bd=1)
+    title_bar.grid(row=0, column=0, pady=3)
+    close_button = tk.Button(window, text="Exit", command=window.destroy)
+    close_label = tk.Label(window, text="x", font="Verdana, 9", bg="#4d0c34",  fg="white")
+    close_label.grid(row=0, column=1, padx=(50, 0))
+    close_label.bind("<Button-1>",quitter)
+    
+
+    
+    
 
     def update():
         panel_text = get_current_data()
@@ -65,7 +81,7 @@ def main():
         window.after(25000, update)
     update()
     window.mainloop()
-        
+  
 if __name__ == "__main__":
     # update()
     # window.mainloop()
